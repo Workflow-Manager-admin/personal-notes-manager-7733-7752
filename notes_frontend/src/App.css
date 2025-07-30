@@ -1,0 +1,338 @@
+/* CSS Variables for Theme Management */
+:root {
+  /* Light theme colors (customized to provided palette) */
+  --color-primary: #1976d2;
+  --color-secondary: #424242;
+  --color-accent: #fbc02d;
+
+  --bg-primary: #fff;
+  --bg-secondary: #f8f9fa;
+  --sidebar-bg: #e6eef7;
+  --mainarea-bg: #fffde9;
+  --fab-bg: var(--color-accent);
+
+  --text-primary: #222;
+  --text-secondary: #666;
+  --text-active: var(--color-primary);
+
+  --border-color: #e0e0e0;
+
+  --button-bg: var(--color-primary);
+  --button-text: #fff;
+
+  --btn-danger-bg: #e53935;
+  --btn-danger-text: #fff;
+}
+
+[data-theme="dark"] {
+  /* Dark theme colors */
+  --color-primary: #1976d2;
+  --color-secondary: #424242;
+  --color-accent: #fbc02d;
+
+  --bg-primary: #1a1a1a;
+  --bg-secondary: #282c34;
+  --sidebar-bg: #181f2a;
+  --mainarea-bg: #222222;
+  --fab-bg: var(--color-accent);
+
+  --text-primary: #fff;
+  --text-secondary: #cfcfcf;
+  --text-active: var(--color-accent);
+
+  --border-color: #404040;
+
+  --button-bg: #0056b3;
+  --button-text: #ffffff;
+
+  --btn-danger-bg: #e53935;
+  --btn-danger-text: #fff;
+}
+
+/* BASE STRUCTURE and LAYOUT */
+.NotesApp {
+  display: flex;
+  height: 100vh;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  position: relative;
+  font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+.sidebar-container {
+  width: 260px;
+  background: var(--sidebar-bg);
+  border-right: 1px solid var(--border-color);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  min-width: 180px;
+}
+
+.main-area {
+  flex: 1 1 0%;
+  background: var(--mainarea-bg);
+  padding: 3.5rem 0 2rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  position: relative;
+}
+
+/* SIDEBAR STYLES */
+.sidebar {
+  padding: 2rem 1rem 1rem 1.5rem;
+  font-size: 1rem;
+}
+
+.sidebar__title {
+  margin: 0 0 1rem 0;
+  color: var(--color-primary);
+  font-weight: 700;
+  font-size: 1.4rem;
+  letter-spacing: 0.03em;
+}
+
+.sidebar__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.sidebar__item {
+  margin-bottom: 0.3rem;
+  border-radius: 7px;
+}
+
+.sidebar__item--active, .sidebar__item:has(.sidebar__button:focus) {
+  background: var(--color-primary);
+  color: #fff;
+}
+
+.sidebar__button {
+  display: block;
+  width: 100%;
+  border: none;
+  background: none;
+  color: inherit;
+  font-size: 1rem;
+  padding: 0.6rem 1rem;
+  text-align: left;
+  cursor: pointer;
+  border-radius: 7px;
+  outline: none;
+  transition: background 0.2s, color 0.2s;
+}
+.sidebar__button:hover, .sidebar__button:focus {
+  background: var(--color-secondary);
+  color: #fff;
+}
+
+.sidebar__untitled {
+  font-style: italic;
+  color: var(--text-secondary);
+  opacity: 0.8;
+}
+
+/* MAIN NOTE AREA */
+.editor,
+.viewer {
+  background: #fff;
+  border: 1px solid var(--border-color);
+  border-radius: 9px;
+  margin: 1.5rem 2rem;
+  padding: 2rem 2rem 1rem 2rem;
+  flex: 1 1 0%;
+  box-shadow: 0 2px 8px rgba(25, 118, 210, 0.05);
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  min-height: 400px;
+  max-width: 700px;
+  align-self: center;
+}
+
+.editor__title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  border: none;
+  border-bottom: 2px solid var(--border-color);
+  margin-bottom: 1.2rem;
+  padding-bottom: 0.4rem;
+  outline: none;
+  background: transparent;
+  color: var(--text-primary);
+  transition: border-color 0.3s;
+}
+
+.editor__content {
+  font-size: 1.05rem;
+  min-height: 160px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  outline: none;
+  background: #fafbfc;
+  color: var(--text-primary);
+  resize: vertical;
+}
+
+.editor__actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.2rem;
+  align-items: center;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.6em 1.3em;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 7px;
+  cursor: pointer;
+  outline: none;
+  margin-right: 0.4rem;
+  background: var(--button-bg);
+  color: var(--button-text);
+  box-shadow: 0 1px 3px 0 #ddd;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+}
+.btn--primary {
+  background: var(--button-bg);
+  color: var(--button-text);
+}
+.btn--secondary {
+  background: var(--color-secondary);
+  color: #fff;
+}
+.btn--danger {
+  background: var(--btn-danger-bg);
+  color: var(--btn-danger-text);
+}
+
+.btn:disabled,
+.btn[disabled] {
+  opacity: 0.56;
+  cursor: not-allowed;
+}
+
+.viewer__title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--text-active);
+  margin-bottom: 1.2rem;
+}
+
+.viewer__content {
+  white-space: pre-wrap;
+  word-break: break-word;
+  color: var(--text-primary);
+  font-size: 1.09rem;
+  padding: 0.6rem 0 2rem 0;
+}
+
+.viewer__editbtn {
+  align-self: flex-end;
+  width: 110px;
+}
+
+.viewer--empty {
+  opacity: 0.7;
+  color: var(--text-secondary);
+  align-items: center;
+  font-size: 1.18rem;
+  justify-content: center;
+}
+
+.fab {
+  position: fixed;
+  bottom: 34px;
+  right: 38px;
+  width: 60px;
+  height: 60px;
+  font-size: 2.1rem;
+  border-radius: 50%;
+  background: var(--fab-bg);
+  color: #222;
+  box-shadow: 0 7px 24px 0 rgba(25, 118, 210, 0.09);
+  border: none;
+  cursor: pointer;
+  z-index: 123;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  line-height: 1;
+  transition: background 0.22s, color 0.22s, box-shadow 0.22s;
+}
+.fab:hover, .fab:focus {
+  background: var(--color-primary);
+  color: #fff;
+}
+
+.theme-toggle {
+  position: absolute;
+  top: 32px;
+  right: 60px;
+  background-color: var(--button-bg);
+  color: var(--button-text);
+  border: none;
+  border-radius: 8px;
+  padding: 11px 22px;
+  font-size: 1.08rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 7px rgba(25,118,210,0.11);
+  z-index: 10;
+}
+
+.theme-toggle:hover,
+.theme-toggle:focus {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 5px 18px rgba(25, 118, 210, 0.20);
+  opacity: 0.92;
+}
+
+.theme-toggle:active {
+  transform: translateY(0);
+}
+
+/* Responsive for mobile/tablet */
+@media (max-width: 900px) {
+  .NotesApp {
+    flex-direction: column;
+  }
+  .sidebar-container {
+    width: 100vw;
+    min-width: unset;
+    border-right: none;
+    border-bottom: 1px solid var(--border-color);
+  }
+  .main-area {
+    padding: 1.2rem 0 2.8rem 0;
+  }
+  .editor,
+  .viewer {
+    margin: 0.5rem;
+    min-height: 310px;
+    padding: 1.1rem 0.7rem 0.6rem 1rem;
+    max-width: 98vw;
+  }
+  .theme-toggle {
+    top: 14px;
+    right: 15px;
+    padding: 9px 14px;
+    font-size: 1rem;
+  }
+  .fab {
+    right: 15px;
+    bottom: 17px;
+    width: 54px;
+    height: 54px;
+    font-size: 1.7rem;
+  }
+}
